@@ -15,16 +15,16 @@
  */
 package com.github.tomakehurst.wiremock.common;
 
-import static java.lang.Math.max;
-import static java.lang.System.lineSeparator;
-import static java.nio.charset.StandardCharsets.UTF_8;
-
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static java.lang.Math.max;
+import static java.lang.System.lineSeparator;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class Strings {
 
@@ -582,16 +582,9 @@ public class Strings {
     if (searchChar == null || cs == null) {
       return -1;
     }
+
     if (searchChar instanceof String) {
-      if (cs instanceof String) {
-        return ((String) cs).lastIndexOf((String) searchChar, start);
-      }
-      if (cs instanceof StringBuilder) {
-        return ((StringBuilder) cs).lastIndexOf((String) searchChar, start);
-      }
-      if (cs instanceof StringBuffer) {
-        return ((StringBuffer) cs).lastIndexOf((String) searchChar, start);
-      }
+      return lastIndexOfForString(cs, searchChar.toString(), start);
     }
 
     final int len1 = cs.length();
@@ -609,24 +602,27 @@ public class Strings {
       return start;
     }
 
-    if (len2 <= 16) {
-      if (cs instanceof String) {
-        return ((String) cs).lastIndexOf(searchChar.toString(), start);
-      }
-      if (cs instanceof StringBuilder) {
-        return ((StringBuilder) cs).lastIndexOf(searchChar.toString(), start);
-      }
-      if (cs instanceof StringBuffer) {
-        return ((StringBuffer) cs).lastIndexOf(searchChar.toString(), start);
-      }
-    }
-
     if (start + len2 > len1) {
       start = len1 - len2;
     }
 
-    final char char0 = searchChar.charAt(0);
+    return lastIndexOfForCharSequence(cs, searchChar, start, len2);
+  }
 
+  private static int lastIndexOfForString(CharSequence cs, String searchChar, int start) {
+    if (cs instanceof String) {
+      return ((String) cs).lastIndexOf(searchChar, start);
+    } else if (cs instanceof StringBuilder) {
+      return ((StringBuilder) cs).lastIndexOf(searchChar, start);
+    } else if (cs instanceof StringBuffer) {
+      return ((StringBuffer) cs).lastIndexOf(searchChar, start);
+    }
+    return -1;
+  }
+
+  private static int lastIndexOfForCharSequence(
+      CharSequence cs, CharSequence searchChar, int start, int len2) {
+    final char char0 = searchChar.charAt(0);
     int i = start;
     while (true) {
       while (cs.charAt(i) != char0) {
