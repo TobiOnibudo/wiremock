@@ -41,8 +41,7 @@ import org.wiremock.webhooks.Webhooks;
 
 public class Extensions implements WireMockServices {
 
-  public static final Extensions NONE =
-      new Extensions(new ExtensionDeclarations(), null, null, null, null);
+  public static final Extensions NONE = new ExtensionsBuilder().build();
 
   private final ExtensionDeclarations extensionDeclarations;
   private final Admin admin;
@@ -57,19 +56,13 @@ public class Extensions implements WireMockServices {
 
   private final Map<String, Extension> loadedExtensions;
 
-  public Extensions(
-      ExtensionDeclarations extensionDeclarations,
-      Admin admin,
-      Options options,
-      Stores stores,
-      FileSource files) {
-    this.extensionDeclarations = extensionDeclarations;
-    this.admin = admin;
-    this.options = options;
-    this.stores = stores;
-    this.files = files;
-
-    loadedExtensions = new LinkedHashMap<>();
+  Extensions(ExtensionsBuilder builder) {
+    this.extensionDeclarations = builder.getExtensionDeclarations();
+    this.admin = builder.getAdmin();
+    this.options = builder.getOptions();
+    this.stores = builder.getStores();
+    this.files = builder.getFiles();
+    this.loadedExtensions = builder.getLoadedExtensions();
   }
 
   public void load() {
