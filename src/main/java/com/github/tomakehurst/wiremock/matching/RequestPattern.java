@@ -453,12 +453,7 @@ public class RequestPattern implements NamedValueMatcher<Request> {
   }
 
   private String urlPatternOrNull(Class<? extends UrlPattern> clazz, boolean regex) {
-    return (url != null
-            && url.getClass().equals(clazz)
-            && url.isRegex() == regex
-            && url.isSpecified())
-        ? url.getPattern().getValue()
-        : null;
+    return url != null && url.getClass().equals(clazz) ? url.getPatternIfMatches(regex) : null;
   }
 
   public RequestMethod getMethod() {

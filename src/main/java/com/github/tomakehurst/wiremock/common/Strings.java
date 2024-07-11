@@ -15,16 +15,16 @@
  */
 package com.github.tomakehurst.wiremock.common;
 
+import static java.lang.Math.max;
+import static java.lang.System.lineSeparator;
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static java.lang.Math.max;
-import static java.lang.System.lineSeparator;
-import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class Strings {
 
