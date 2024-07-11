@@ -933,7 +933,7 @@ public class CommandLineOptions implements Options {
   }
 
   @Override
-  public boolean getDisableOptimizeXmlFactoriesLoading() {
+  public boolean getDisableOptXmlFactLoading() {
     return optionSet.has(DISABLE_OPTIMIZE_XML_FACTORIES_LOADING);
   }
 

@@ -237,7 +237,7 @@ public class WarConfiguration implements Options {
   }
 
   @Override
-  public boolean getDisableOptimizeXmlFactoriesLoading() {
+  public boolean getDisableOptXmlFactLoading() {
     return false;
   }
 

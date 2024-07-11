@@ -62,7 +62,7 @@ import java.util.stream.Collectors;
 public class WireMockConfiguration implements Options {
 
   private long asyncResponseTimeout = DEFAULT_TIMEOUT;
-  private boolean disableOptimizeXmlFactoriesLoading = false;
+  private boolean disableOptXmlFactLoading = false;
   private int portNumber = DEFAULT_PORT;
   private boolean httpDisabled = false;
   private boolean http2PlainDisabled = false;
@@ -528,9 +528,8 @@ public class WireMockConfiguration implements Options {
     return this;
   }
 
-  public WireMockConfiguration disableOptimizeXmlFactoriesLoading(
-      boolean disableOptimizeXmlFactoriesLoading) {
-    this.disableOptimizeXmlFactoriesLoading = disableOptimizeXmlFactoriesLoading;
+  public WireMockConfiguration disableOptXmlFactLoading(boolean disableOptXmlFactLoading) {
+    this.disableOptXmlFactLoading = disableOptXmlFactLoading;
     return this;
   }
 
@@ -802,8 +801,8 @@ public class WireMockConfiguration implements Options {
   }
 
   @Override
-  public boolean getDisableOptimizeXmlFactoriesLoading() {
-    return disableOptimizeXmlFactoriesLoading;
+  public boolean getDisableOptXmlFactLoading() {
+    return disableOptXmlFactLoading;
   }
 
   @Override

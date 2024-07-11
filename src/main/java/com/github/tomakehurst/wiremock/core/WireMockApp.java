@@ -73,7 +73,7 @@ public class WireMockApp implements StubServer, Admin {
   private Extensions extensions;
 
   public WireMockApp(Options options, Container container) {
-    if (!options.getDisableOptimizeXmlFactoriesLoading()
+    if (!options.getDisableOptXmlFactLoading()
         && Boolean.FALSE.equals(FACTORIES_LOADING_OPTIMIZED.get())) {
       Xml.optimizeFactoriesLoading();
       FACTORIES_LOADING_OPTIMIZED.set(true);

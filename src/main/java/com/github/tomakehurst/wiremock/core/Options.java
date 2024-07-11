@@ -133,7 +133,7 @@ public interface Options {
 
   long timeout();
 
-  boolean getDisableOptimizeXmlFactoriesLoading();
+  boolean getDisableOptXmlFactLoading();
 
   boolean getDisableStrictHttpHeaders();
 
